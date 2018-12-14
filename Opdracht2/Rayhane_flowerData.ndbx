@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ndbx formatVersion="21" type="file" uuid="4b290738-975b-43af-ba1a-8710347f3833">
+    <property name="canvasHeight" value="1000"/>
+    <property name="canvasWidth" value="1000"/>
+    <property name="canvasX" value="0"/>
+    <property name="canvasY" value="0"/>
+    <node name="root" prototype="core.network" renderedChild="copy1">
+        <node name="add1" position="2.00,3.00" prototype="math.add"/>
+        <node name="align1" position="0.00,9.00" prototype="corevector.align">
+            <port name="halign" type="string" value="right"/>
+        </node>
+        <node name="color1" position="14.00,-1.00" prototype="color.color">
+            <port name="color" type="color" value="#df8686ff"/>
+        </node>
+        <node name="color2" position="14.00,0.00" prototype="color.color">
+            <port name="color" type="color" value="#df8686ff"/>
+        </node>
+        <node name="color3" position="14.00,1.00" prototype="color.color">
+            <port name="color" type="color" value="#e3c000ff"/>
+        </node>
+        <node name="colorize1" position="0.00,7.00" prototype="corevector.colorize"/>
+        <node name="combine1" position="9.00,6.00" prototype="list.combine"/>
+        <node name="copy1" position="0.00,10.00" prototype="corevector.copy">
+            <port name="copies" type="int" value="12"/>
+            <port name="rotate" type="float" value="30.0"/>
+            <port name="scale" type="point" value="110.00,110.00"/>
+        </node>
+        <node name="divide1" position="6.00,3.00" prototype="math.divide">
+            <port name="value2" type="float" value="18.0"/>
+        </node>
+        <node name="ellipse1" position="5.00,8.00" prototype="corevector.ellipse"/>
+        <node name="frame1" position="0.00,0.00" prototype="core.frame"/>
+        <node name="group1" position="0.00,8.00" prototype="corevector.group"/>
+        <node name="import_csv1" position="5.00,-5.00" prototype="data.import_csv">
+            <port name="file" type="string" value="cyclone.csv"/>
+        </node>
+        <node name="lookup1" position="5.00,-3.00" prototype="data.lookup">
+            <port name="key" type="string" value="maisons_inondees_affected_flooded"/>
+        </node>
+        <node name="lookup2" position="9.00,-3.00" prototype="data.lookup">
+            <port name="key" type="string" value="handicapes_affected_idps_individuals_vulnerable"/>
+        </node>
+        <node name="make_point1" position="5.00,7.00" prototype="corevector.make_point"/>
+        <node name="multiply1" position="11.00,3.00" prototype="math.multiply">
+            <port name="value2" type="float" value="3.0"/>
+        </node>
+        <node name="range1" position="7.00,0.00" prototype="math.range">
+            <port name="start" type="float" value="-50.0"/>
+            <port name="end" type="float" value="50.0"/>
+        </node>
+        <node name="repeat1" position="9.00,7.00" prototype="list.repeat">
+            <port name="amount" type="int" value="10"/>
+        </node>
+        <node name="slice1" position="5.00,-2.00" prototype="list.slice"/>
+        <node name="slice2" position="9.00,-2.00" prototype="list.slice"/>
+        <node name="sort1" position="9.00,8.00" prototype="list.sort">
+            <port name="key" type="string" value="Hue"/>
+        </node>
+        <node name="wave1" position="2.00,5.00" prototype="math.wave">
+            <port name="min" type="float" value="-100.0"/>
+            <port name="period" type="float" value="174.0"/>
+        </node>
+        <conn input="make_point1.y" output="wave1"/>
+        <conn input="make_point1.x" output="multiply1"/>
+        <conn input="ellipse1.position" output="make_point1"/>
+        <conn input="ellipse1.width" output="divide1"/>
+        <conn input="repeat1.list" output="combine1"/>
+        <conn input="sort1.list" output="repeat1"/>
+        <conn input="colorize1.shape" output="ellipse1"/>
+        <conn input="colorize1.fill" output="sort1"/>
+        <conn input="combine1.list1" output="color1"/>
+        <conn input="combine1.list2" output="color2"/>
+        <conn input="combine1.list3" output="color3"/>
+        <conn input="group1.shapes" output="colorize1"/>
+        <conn input="align1.shape" output="group1"/>
+        <conn input="copy1.shape" output="align1"/>
+        <conn input="add1.value1" output="frame1"/>
+        <conn input="slice1.list" output="lookup1"/>
+        <conn input="add1.value2" output="range1"/>
+        <conn input="divide1.value1" output="range1"/>
+        <conn input="slice2.list" output="lookup2"/>
+        <conn input="multiply1.value1" output="range1"/>
+        <conn input="wave1.min" output="slice1"/>
+        <conn input="lookup1.list" output="import_csv1"/>
+        <conn input="lookup2.list" output="import_csv1"/>
+        <conn input="wave1.offset" output="add1"/>
+        <conn input="ellipse1.height" output="divide1"/>
+        <conn input="range1.end" output="slice1"/>
+        <conn input="range1.start" output="slice2"/>
+    </node>
+</ndbx>
