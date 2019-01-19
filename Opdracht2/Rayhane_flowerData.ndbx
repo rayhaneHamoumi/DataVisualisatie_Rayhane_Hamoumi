@@ -32,13 +32,13 @@
         <node name="frame1" position="0.00,0.00" prototype="core.frame"/>
         <node name="group1" position="0.00,8.00" prototype="corevector.group"/>
         <node name="import_csv1" position="5.00,-5.00" prototype="data.import_csv">
-            <port name="file" type="string" value="cyclone.csv"/>
+            <port name="file" type="string" value="edible wild plants metadata - Tabelle1.csv"/>
         </node>
         <node name="lookup1" position="5.00,-3.00" prototype="data.lookup">
-            <port name="key" type="string" value="maisons_inondees_affected_flooded"/>
+            <port name="key" type="string" value="Nectar"/>
         </node>
         <node name="lookup2" position="9.00,-3.00" prototype="data.lookup">
-            <port name="key" type="string" value="handicapes_affected_idps_individuals_vulnerable"/>
+            <port name="key" type="string" value="longevity"/>
         </node>
         <node name="make_point1" position="5.00,7.00" prototype="corevector.make_point"/>
         <node name="multiply1" position="11.00,3.00" prototype="math.multiply">
